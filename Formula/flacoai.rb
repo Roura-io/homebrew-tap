@@ -1,25 +1,26 @@
 class Flacoai < Formula
   desc "flacoAi — local AI assistant powered by Ollama with Claude validation"
   homepage "https://github.com/Roura-io/flaco"
-  version "0.4.5"
+  version "0.5.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/Roura-io/flaco/releases/download/v0.4.5/flaco-0.4.5-arm64-apple-darwin.tar.gz"
-      sha256 "f6d1dc5d957455b018055d7924efa29e721096d7f588242278879ba84b9bebc0"
+      url "https://github.com/Roura-io/flaco/releases/download/v0.5.0/flaco-0.5.0-arm64-apple-darwin.tar.gz"
+      sha256 "01f5d96c97ddc816b647746ffd6be42420684b237cd2cf5e23b0df3453d00360"
     end
   end
 
   def install
-    libexec.install "flaco" => "flaco-bin"
+    libexec.install "flaco-tui"
+    libexec.install "flaco-repl"
     etc.install "flaco.conf" unless (etc/"flaco.conf").exist?
 
-    # Install registry content preserving directory structure
     (share/"flaco").install "agents"
     (share/"flaco").install "commands"
     (share/"flaco").install "rules"
     (share/"flaco").install "skills"
 
+    # flaco → full TUI (daily driver)
     (bin/"flaco").write <<~EOS
       #!/bin/bash
       CONF="${HOME}/.config/flaco/config"
@@ -36,14 +37,19 @@ class Flacoai < Formula
         ln -sf "#{share}/flaco/rules" "$FLACO_HOME/rules"
         ln -sf "#{share}/flaco/skills" "$FLACO_HOME/skills"
       fi
-      exec "#{libexec}/flaco-bin" --repl "$@"
+      if [ "$1" = "--repl" ]; then
+        exec "#{libexec}/flaco-repl" --repl "${@:2}"
+      else
+        exec "#{libexec}/flaco-tui" "$@"
+      fi
     EOS
   end
 
   def caveats
     <<~EOS
-      Edit ~/.config/flaco/config then run: flaco
-      Includes 39 agents, 72 commands, 12 rules, 23 skills.
+      Edit ~/.config/flaco/config then run:
+        flaco          # Full TUI (daily driver)
+        flaco --repl   # Basic REPL (remote/mobile)
     EOS
   end
 end
