@@ -1,12 +1,12 @@
 class Flacoai < Formula
   desc "flacoAi — local AI assistant powered by Ollama with Claude validation"
   homepage "https://github.com/Roura-io/flaco"
-  version "0.8.3"
+  version "0.8.4"
 
   on_macos do
     on_arm do
-      url "https://github.com/Roura-io/flaco/releases/download/v0.8.3/flaco-0.8.3-arm64-apple-darwin.tar.gz"
-      sha256 "250989e0cd8f83e7674182129f9a7f8e6288e7ca301f0d6e9db9b3cfabf03517"
+      url "https://github.com/Roura-io/flaco/releases/download/v0.8.4/flaco-0.8.4-arm64-apple-darwin.tar.gz"
+      sha256 "39a5fa110c1110d12cc107640253e7b3dd5aeaf6959e1f54955f21be45327345"
     end
   end
 
