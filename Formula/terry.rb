@@ -1,12 +1,12 @@
 class Terry < Formula
   desc "terry — local AI coding assistant powered by Ollama"
   homepage "https://github.com/Roura-io/terry"
-  version "0.1.0"
+  version "0.1.1"
 
   on_macos do
     on_arm do
-      url "https://github.com/Roura-io/terry/releases/download/v0.1.0/terry-0.1.0-arm64-apple-darwin.tar.gz"
-      sha256 "03cf05b522c9012fa43dfdd8c190abc1c13f1aa9cfb567f4279c496efdc794ab"
+      url "https://github.com/Roura-io/terry/releases/download/v0.1.1/terry-0.1.1-arm64-apple-darwin.tar.gz"
+      sha256 "169d92223ea3f5200cb25ac7b866133584071118a2bb8910bacff82631994252"
     end
   end
 
