@@ -1,13 +1,13 @@
 class FlacoHq < Formula
   desc "Roura AI HQ operator console (Python + Textual TUI)"
   homepage "https://github.com/Roura-io/flaco-hq"
-  version "0.4.14"
+  version "0.4.15"
 
   # Private repo cloned via SSH. Requires SSH key for Roura-io to be configured.
   url "git@github.com:Roura-io/flaco-hq.git",
       using:    GitDownloadStrategy,
-      tag:      "v0.4.14",
-      revision: "554081fbaedc77e9e473c1425d2eb9df538f0207"
+      tag:      "v0.4.15",
+      revision: "b8c59681c73c9a8ae0301949b8d42b283207b8df"
 
   depends_on "python@3.13"
 
